@@ -5,6 +5,10 @@ C:\codebase\projects\helo\helo-my-identity\src\main\java\my\helo\identity\HeloMy
 C:\codebase\projects\helo\helo-my-identity\src\main\java\my\helo\identity\security\AdminTokenProvider.java
 C:\codebase\projects\helo\helo-my-identity\src\main\java\my\helo\identity\service\OtpService.java
 C:\codebase\projects\helo\helo-my-identity\src\main\java\my\helo\identity\model\User.java
+C:\codebase\projects\helo\helo-my-identity\src\main\java\my\helo\identity\dto\PasswordResetUpdate.java
+C:\codebase\projects\helo\helo-my-identity\src\main\java\my\helo\identity\service\PasswordResetService.java
+C:\codebase\projects\helo\helo-my-identity\src\main\java\my\helo\identity\dto\PasswordResetRequest.java
+C:\codebase\projects\helo\helo-my-identity\src\main\java\my\helo\identity\dto\PasswordResetVerify.java
 C:\codebase\projects\helo\helo-my-identity\src\main\java\my\helo\identity\controller\AuthController.java
 C:\codebase\projects\helo\helo-my-identity\src\main\java\my\helo\identity\service\TokenService.java
 C:\codebase\projects\helo\helo-my-identity\src\main\java\my\helo\identity\controller\AdminSetupController.java
@@ -12,6 +16,7 @@ C:\codebase\projects\helo\helo-my-identity\src\main\java\my\helo\identity\servic
 C:\codebase\projects\helo\helo-my-identity\src\main\java\my\helo\identity\service\EmailService.java
 C:\codebase\projects\helo\helo-my-identity\src\main\java\my\helo\identity\service\KeycloakUserService.java
 C:\codebase\projects\helo\helo-my-identity\src\main\java\my\helo\identity\dto\TokenResponse.java
+C:\codebase\projects\helo\helo-my-identity\src\main\java\my\helo\identity\controller\PasswordResetController.java
 C:\codebase\projects\helo\helo-my-identity\src\main\java\my\helo\identity\service\UserService.java
 C:\codebase\projects\helo\helo-my-identity\src\main\java\my\helo\identity\service\EmailServiceImpl.java
 C:\codebase\projects\helo\helo-my-identity\src\main\java\my\helo\identity\controller\EmailAuthController.java

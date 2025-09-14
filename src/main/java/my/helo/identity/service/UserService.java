@@ -132,4 +132,61 @@ public class UserService {
             throw new RuntimeException("Unexpected error during refresh token issuance", e);
         }
     }
+
+    public void updatePassword(String email, String newPassword) {
+        String token = tokenProvider.getToken();
+        String userId = findUserIdByEmail(email);
+
+        Map<String, Object> payload = Map.of(
+                "type", "password",
+                "value", newPassword,
+                "temporary", false
+        );
+
+        webClient.put()
+                .uri(serverUrl + "/admin/realms/" + realm + "/users/" + userId + "/reset-password")
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
+                .contentType(MediaType.APPLICATION_JSON)
+                .bodyValue(payload)
+                .retrieve()
+                .toBodilessEntity()
+                .block();
+    }
+
+
+    public String findUserIdByEmail(String email) {
+        String token = tokenProvider.getToken();
+
+        try {
+            List<Map<String, Object>> users = webClient.get()
+                    .uri(uriBuilder -> uriBuilder
+                            .path(serverUrl + "/admin/realms/" + realm + "/users")
+                            .queryParam("email", email)
+                            .build())
+                    .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
+                    .retrieve()
+                    .bodyToMono(List.class)
+                    .block();
+
+            if (users == null || users.isEmpty()) {
+                throw new IllegalArgumentException("User not found for email: " + email);
+            }
+
+            if (users.size() > 1) {
+                log.warn("Multiple users found for email: {}. Enforcing uniqueness.", email);
+                throw new IllegalStateException("Multiple users found for email: " + email);
+            }
+
+            return (String) users.get(0).get("id");
+
+        } catch (WebClientResponseException e) {
+            log.error("Failed to fetch user by email: {}", e.getResponseBodyAsString(), e);
+            throw new RuntimeException("User lookup failed: " + e.getMessage(), e);
+        } catch (Exception e) {
+            log.error("Unexpected error during user lookup", e);
+            throw new RuntimeException("Unexpected error during user lookup", e);
+        }
+    }
+
+
 }
