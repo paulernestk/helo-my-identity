@@ -12,6 +12,7 @@ my\helo\identity\service\KeycloakUserService.class
 my\helo\identity\service\PasswordResetService.class
 my\helo\identity\controller\AuthController.class
 my\helo\identity\dto\PasswordResetUpdate.class
+my\helo\identity\dto\ProfileDto.class
 my\helo\identity\security\SecurityConfig.class
 my\helo\identity\service\OtpService.class
 my\helo\identity\dto\LinkProviderRequest.class
@@ -25,5 +26,6 @@ my\helo\identity\service\EmailService.class
 my\helo\identity\service\RoleService.class
 my\helo\identity\dto\PasswordResetRequest.class
 my\helo\identity\dto\TokenResponse.class
+my\helo\identity\controller\ProfileController.class
 my\helo\identity\dto\PasswordResetVerify.class
 my\helo\identity\dto\EmailRequest.class

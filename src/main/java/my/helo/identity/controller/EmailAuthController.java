@@ -3,6 +3,7 @@ package my.helo.identity.controller;
 import my.helo.identity.dto.AuthResponse;
 import my.helo.identity.dto.EmailRequest;
 import my.helo.identity.dto.OtpVerificationRequest;
+import my.helo.identity.dto.TokenResponse;
 import my.helo.identity.service.EmailService;
 import my.helo.identity.service.OtpService;
 import my.helo.identity.service.UserService;
@@ -45,8 +46,8 @@ public class EmailAuthController {
         userService.createUser(request.getEmail());
 
         try {
-            String jwt = userService.issueJwt(request.getEmail(), "temporary123");
-            return ResponseEntity.ok(new AuthResponse("OTP verified. User created.", jwt));
+            TokenResponse token = userService.issueJwtWithProfile(request.getEmail(), "temporary123");
+            return ResponseEntity.ok(new AuthResponse("OTP verified. User created.", token));
         } catch (Exception e) {
             return ResponseEntity.status(500).body(new AuthResponse("User created, but failed to issue token.", null));
         }

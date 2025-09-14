@@ -1,14 +1,7 @@
 package my.helo.identity.dto;
 
-public class TokenResponse {
-    private String accessToken;
-    private String refreshToken;
-
+public record TokenResponse(String accessToken, String refreshToken, ProfileDto profile) {
     public TokenResponse(String accessToken, String refreshToken) {
-        this.accessToken = accessToken;
-        this.refreshToken = refreshToken;
+        this(accessToken, refreshToken, null);
     }
-
-    public String getAccessToken() { return accessToken; }
-    public String getRefreshToken() { return refreshToken; }
 }

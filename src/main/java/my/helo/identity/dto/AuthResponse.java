@@ -2,13 +2,13 @@ package my.helo.identity.dto;
 
 public class AuthResponse {
     private String message;
-    private String token;
+    private TokenResponse token;
 
-    public AuthResponse(String message, String token) {
+    public AuthResponse(String message, TokenResponse token) {
         this.message = message;
         this.token = token;
     }
 
     public String getMessage() { return message; }
-    public String getToken() { return token; }
+    public TokenResponse getToken() { return token; }
 }
