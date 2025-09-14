@@ -1,29 +1,51 @@
-### IntelliJ IDEA ###
+### Java ###
+*.class
+*.jar
+*.war
+*.ear
+target/
 out/
-!**/src/main/**/out/
-!**/src/test/**/out/
 
-### Eclipse ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
+### Spring Boot ###
+*.log
+*.tmp
+*.bak
+*.swp
+*.pid
+*.hprof
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+### Maven ###
+.mvn/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+release.properties
+
+### IntelliJ IDEA ###
+.idea/
+*.iml
+*.iws
+out/
+!**/src/main/**/out
 
 ### VS Code ###
 .vscode/
 
-### Mac OS ###
+### Docker ###
+*.env
+docker-compose.override.yml
+
+### OS-specific ###
 .DS_Store
+Thumbs.db
+
+### Build artifacts ###
+build/
+bin/
+
+### Test reports ###
+test-output/
+surefire-reports/
+
+### Keycloak ###
+keycloak-export.json
