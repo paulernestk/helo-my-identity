@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    command: start-dev
+    ports:
+      - "8080:8080"
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+
+  identity-service:
+    build: .
+    ports:
+      - "8081:8081"
+    depends_on:
+      - keycloak
+      - redis

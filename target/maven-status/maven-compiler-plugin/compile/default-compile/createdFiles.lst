@@ -1,0 +1,17 @@
+my\helo\identity\service\EmailServiceImpl.class
+my\helo\identity\controller\EmailAuthController.class
+my\helo\identity\model\User.class
+my\helo\identity\dto\OtpVerificationRequest.class
+my\helo\identity\controller\AdminSetupController.class
+my\helo\identity\dto\AuthResponse.class
+my\helo\identity\security\AdminTokenProvider.class
+my\helo\identity\HeloMyBackendApplication.class
+my\helo\identity\security\AdminTokenProvider$CachedToken.class
+my\helo\identity\service\KeycloakUserService.class
+my\helo\identity\service\UserService.class
+my\helo\identity\controller\AuthController.class
+my\helo\identity\service\EmailService.class
+my\helo\identity\service\RoleService.class
+my\helo\identity\dto\EmailRequest.class
+my\helo\identity\security\SecurityConfig.class
+my\helo\identity\service\OtpService.class
