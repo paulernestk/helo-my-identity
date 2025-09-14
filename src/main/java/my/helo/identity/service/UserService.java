@@ -1,5 +1,7 @@
 package my.helo.identity.service;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import my.helo.identity.dto.TokenResponse;
 import my.helo.identity.security.AdminTokenProvider;
 import org.slf4j.Logger;
@@ -40,13 +42,7 @@ public class UserService {
     }
 
     public void createUser(String email) {
-        String token;
-        try {
-            token = tokenProvider.getToken();
-        } catch (Exception e) {
-            log.error("Failed to retrieve admin token", e);
-            throw new RuntimeException("Unable to create user: admin token unavailable");
-        }
+        String token = tokenProvider.getToken();
 
         Map<String, Object> payload = new HashMap<>();
         payload.put("username", email);
@@ -143,16 +139,24 @@ public class UserService {
                 "temporary", false
         );
 
-        webClient.put()
-                .uri(serverUrl + "/admin/realms/" + realm + "/users/" + userId + "/reset-password")
-                .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
-                .contentType(MediaType.APPLICATION_JSON)
-                .bodyValue(payload)
-                .retrieve()
-                .toBodilessEntity()
-                .block();
+        try {
+            webClient.put()
+                    .uri(serverUrl + "/admin/realms/" + realm + "/users/" + userId + "/reset-password")
+                    .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .bodyValue(payload)
+                    .retrieve()
+                    .toBodilessEntity()
+                    .block();
+            log.info("Password updated for user {}", email);
+        } catch (WebClientResponseException e) {
+            log.error("Password update failed: {}", e.getResponseBodyAsString(), e);
+            throw new RuntimeException("Password update failed: " + e.getMessage(), e);
+        } catch (Exception e) {
+            log.error("Unexpected error during password update", e);
+            throw new RuntimeException("Unexpected error during password update", e);
+        }
     }
-
 
     public String findUserIdByEmail(String email) {
         String token = tokenProvider.getToken();
@@ -188,5 +192,14 @@ public class UserService {
         }
     }
 
-
+    public String extractUserIdFromJwt(String bearerToken) {
+        try {
+            String token = bearerToken.replace("Bearer ", "").trim();
+            DecodedJWT jwt = JWT.decode(token);
+            return jwt.getSubject(); // Assumes sub = userId
+        } catch (Exception e) {
+            log.error("Failed to decode JWT for user ID extraction", e);
+            throw new RuntimeException("Invalid JWT token");
+        }
+    }
 }
