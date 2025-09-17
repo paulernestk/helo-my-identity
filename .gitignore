@@ -1,12 +1,8 @@
-### Java ###
+# === Java & Maven ===
 *.class
 *.jar
 *.war
 *.ear
-target/
-out/
-
-### Spring Boot ###
 *.log
 *.tmp
 *.bak
@@ -14,38 +10,48 @@ out/
 *.pid
 *.hprof
 
-### Maven ###
+target/
+out/
+build/
+bin/
+
 .mvn/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
 release.properties
 
-### IntelliJ IDEA ###
+# === Spring Boot ===
+logs/
+*.db
+*.mv.db
+*.h2.db
+
+# === IntelliJ IDEA ===
 .idea/
 *.iml
 *.iws
 out/
 !**/src/main/**/out
 
-### VS Code ###
+# === VS Code ===
 .vscode/
 
-### Docker ###
+# === Docker ===
 *.env
 docker-compose.override.yml
+keycloak-data/
+keycloak-export.json
 
-### OS-specific ###
+# === OS-specific ===
 .DS_Store
 Thumbs.db
 
-### Build artifacts ###
-build/
-bin/
-
-### Test reports ###
+# === Test Reports ===
 test-output/
 surefire-reports/
 
-### Keycloak ###
-keycloak-export.json
+# === Executables & Scripts ===
+*.sh
+*.exe
+*.out

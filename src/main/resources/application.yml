@@ -1,7 +1,21 @@
 server:
-  port: 8081
+  port: 8080  # Spring Boot now runs on standard port
 
 spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/helo_identity
+    username: helo
+    password: helo123
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
   mail:
     host: localhost
     port: 1025
@@ -17,7 +31,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8080/realms/helo
+          issuer-uri: http://localhost:8081/realms/helo  # Keycloak now runs on 8081
 
   data:
     redis:
@@ -32,16 +46,13 @@ logging:
     org.springframework.boot.autoconfigure: INFO
     org.springframework.boot.autoconfigure.jms.activemq: WARN
 
-
 keycloak:
-  server-url: http://localhost:8180
+  server-url: http://localhost:8081
   realm: helo
 
-  # Admin client for backend service-to-service operations
   admin-client-id: admin-cli
   admin-client-secret: 47Juv2fwxzFGtR5UCTKKK8LT9S3jkiV4
 
-  # Public client for user login, refresh tokens, and profile access
   client-id: helo-app
 
 helo:
